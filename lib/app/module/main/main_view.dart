@@ -1,4 +1,3 @@
-import 'package:common_widget_lib/common_widget_lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/utils/toast_util.dart';

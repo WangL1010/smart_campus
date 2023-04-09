@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_campus/app/common/widget/image_overlay.dart';
+import 'package:smart_campus/app/common/widget/keep_alive_page.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
 import 'package:smart_campus/app/module/home/home_view.dart';
 
@@ -42,9 +43,9 @@ class MainState {
         ),
       ]
       ..pages = [
-        HomePage(),
-        HomePage(),
-        HomePage(),
+        KeepAlivePage(child: HomePage()),
+        KeepAlivePage(child: HomePage()),
+        KeepAlivePage(child: HomePage()),
       ];
   }
 }

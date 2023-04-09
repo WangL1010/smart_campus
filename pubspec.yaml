@@ -46,14 +46,7 @@ dependencies:
   flutter_smart_dialog: 4.5.3+7
 
   #轮播图
-  flutter_swiper : 1.1.6
-  # 通用封装组件
-  common_widget_lib:
-    hosted:
-      name: common_widget_lib
-      url: http://192.168.5.79:6688
-    version: 3.0.0
-
+  flutter_swiper_view: ^1.1.8
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

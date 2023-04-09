@@ -1,15 +1,14 @@
-import 'package:common_widget_lib/common_widget_lib.dart';
 import 'package:get/get.dart';
+import 'package:smart_campus/app/common/utils/common_toast.dart';
 
 class ToastUtil{
 
   ToastUtil._();
 
   static void showToast(String content) {
-    EhiToast.showToast(
+    CommonToast.showToast(
       content,
       Get.context!,
-      toastPosition: EhiToastPosition.CENTER,
     );
   }
 }

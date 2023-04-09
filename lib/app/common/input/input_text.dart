@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:common_widget_lib/common_widget_lib.dart';
 
 
 ///输入控件封装，封装模块尽量减少依赖，方便移植
@@ -149,8 +148,8 @@ class _InputTextState extends State<InputText> {
     return (widget.width != null && widget.width == 0)
         ? _inputText(context)
         : Container(
-            height: widget.height ?? 50.dp,
-            width: widget.width ?? 300.dp,
+            height: widget.height ?? 50,
+            width: widget.width ?? 300,
             alignment: Alignment.center,
             child: _inputText(context),
           );
@@ -169,7 +168,7 @@ class _InputTextState extends State<InputText> {
           style: widget.style ??
               TextStyle(
                 color: widget.textColor,
-                fontSize: widget.textSize ?? 28.sp,
+                fontSize: widget.textSize ?? 28,
               ),
           enabled: widget.enabled,
           inputFormatters: widget.inputFormatters,
@@ -184,7 +183,7 @@ class _InputTextState extends State<InputText> {
                 hintText: widget.hintText,
                 hintStyle: TextStyle(
                   color: widget.hintColor,
-                  fontSize: widget.hintSize ?? 28.sp,
+                  fontSize: widget.hintSize ?? 28,
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(0.0),

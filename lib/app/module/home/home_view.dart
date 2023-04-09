@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
 import 'package:smart_campus/app/common/widget/common_image_widget.dart';
@@ -6,6 +7,12 @@ import 'package:smart_campus/app/common/widget/image_overlay.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
 
 import 'home_logic.dart';
+
+List<String> path = [
+  ImageCommon.splash,
+  ImageCommon.splash,
+  ImageCommon.splash
+];
 
 class HomePage extends StatelessWidget {
   final logic = Get.put(HomeLogic());
@@ -16,9 +23,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeLogic>(builder: (logic) {
-      return _buildBg(children: [
+      return _buildBg(context, children: [
         _buildTitleImage(),
-        //_buildSwiperWidget(),
+        _buildSwiperWidget(context),
       ]);
     });
   }
@@ -40,7 +47,7 @@ class HomePage extends StatelessWidget {
 
   Widget _buildImageItem({required String title, required String image}) {
     return GestureDetector(
-      onTap: (){},
+      onTap: () {},
       child: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
@@ -67,7 +74,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildBg({required List<Widget> children}) {
+  Widget _buildBg(
+      BuildContext context, {
+        required List<Widget> children,
+      }) {
     return GetBindWidget(
       bind: logic,
       child: Scaffold(
@@ -94,20 +104,93 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            ...children,
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ...children,
+            ],
+          ),
         ),
       ),
     );
   }
 
-  // Widget _buildSwiperWidget() {
-  //   return Container(
-  //     height: 250,
-  //     width: double.infinity,
-  //    // child: Swiper(itemCount: ,pagination: const SwiperPagination(),),
-  //   );
-  // }
+  Widget _buildSwiperWidget(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      height: 180,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Swiper(
+            itemHeight: 160,
+            itemWidth: 350,
+            itemCount: path.length,
+            scrollDirection: Axis.horizontal,
+            duration: 1200,
+            loop: true,
+            itemBuilder: (context, index) {
+              return Stack(
+                children: [
+                  Positioned(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      alignment: Alignment.center,
+                      child: CommonImage(
+                        path[index],
+                        width: 350,
+                        height: 160,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    left: 120,
+                    child: Container(
+                      width: 80,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: index == 0 ? Colors.blue : Colors.grey,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: index == 1 ? Colors.blue : Colors.grey,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: index == 2 ? Colors.blue : Colors.grey,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+            layout: SwiperLayout.STACK,
+          ),
+        ),
+      ),
+    );
+  }
 }

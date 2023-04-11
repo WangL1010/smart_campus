@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:smart_campus/app/module/login/login_view.dart';
+import 'package:smart_campus/module/login/login_view.dart';
 
 class SplashLogic extends GetxController {
   @override

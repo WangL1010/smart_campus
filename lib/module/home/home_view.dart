@@ -4,14 +4,18 @@ import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
 import 'package:smart_campus/app/common/widget/common_image_widget.dart';
 import 'package:smart_campus/app/common/widget/image_overlay.dart';
+import 'package:smart_campus/app/config/colors/colors.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
+import 'package:smart_campus/module/home/home_state.dart';
+import 'package:smart_campus/module/home/widget/news_detail_card.dart';
 
 import 'home_logic.dart';
 
 List<String> path = [
-  ImageCommon.splash,
-  ImageCommon.splash,
-  ImageCommon.splash
+  ImageCommon.loop_image_1,
+  ImageCommon.loop_image_2,
+  ImageCommon.loop_image_3,
+  ImageCommon.loop_image_4,
 ];
 
 class HomePage extends StatelessWidget {
@@ -25,7 +29,9 @@ class HomePage extends StatelessWidget {
     return GetBuilder<HomeLogic>(builder: (logic) {
       return _buildBg(context, children: [
         _buildTitleImage(),
+        //轮播图
         _buildSwiperWidget(context),
+        _buildNewsList(),
       ]);
     });
   }
@@ -75,9 +81,9 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildBg(
-      BuildContext context, {
-        required List<Widget> children,
-      }) {
+    BuildContext context, {
+    required List<Widget> children,
+  }) {
     return GetBindWidget(
       bind: logic,
       child: Scaffold(
@@ -105,11 +111,14 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ...children,
-            ],
+          child: Container(
+            color:  CommonTextColor.backgroundColor,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ...children,
+              ],
+            ),
           ),
         ),
       ),
@@ -180,6 +189,14 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: index == 3 ? Colors.blue : Colors.grey,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -190,6 +207,15 @@ class HomePage extends StatelessWidget {
             layout: SwiperLayout.STACK,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildNewsList() {
+    return Column(
+      children: List.generate(
+        newsList.length,
+        (index) => NewsDetailCard(newsDetail:newsList[index] ,),
       ),
     );
   }

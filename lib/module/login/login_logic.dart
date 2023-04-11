@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:smart_campus/app/module/main/main_view.dart';
-import 'package:smart_campus/app/module/register/register_view.dart';
+import 'package:smart_campus/module/main/main_view.dart';
+import 'package:smart_campus/module/register/register_view.dart';
 
 import 'login_state.dart';
 

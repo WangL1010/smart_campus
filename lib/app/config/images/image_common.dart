@@ -15,4 +15,9 @@ class ImageCommon {
   static const String notice = '${_root}notice.png';
   static const String race = '${_root}race.png';
   static const String schedule = '${_root}schedule.png';
+  static const String loop_image_1 = '${_root}loop_image_1.png';
+  static const String loop_image_2 = '${_root}loop_image_2.png';
+  static const String loop_image_3 = '${_root}loop_image_3.png';
+  static const String loop_image_4 = '${_root}loop_image_4.png';
+  static const String date = '${_root}date.png';
 }

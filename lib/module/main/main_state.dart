@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:smart_campus/app/common/widget/image_overlay.dart';
 import 'package:smart_campus/app/common/widget/keep_alive_page.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
-import 'package:smart_campus/app/module/home/home_view.dart';
+import 'package:smart_campus/module/home/home_view.dart';
+import 'package:smart_campus/module/message/message_view.dart';
+import 'package:smart_campus/module/mine/mine_view.dart';
 
 class MainState {
   late PageController controller;
@@ -44,8 +46,8 @@ class MainState {
       ]
       ..pages = [
         KeepAlivePage(child: HomePage()),
-        KeepAlivePage(child: HomePage()),
-        KeepAlivePage(child: HomePage()),
+        KeepAlivePage(child: MessagePage()),
+        KeepAlivePage(child: MinePage()),
       ];
   }
 }

@@ -41,4 +41,6 @@ class CommonTextColor {
   static const Color lightCyan = Color(0xFFCEF9FF);
 
   static const Color darkCyan = Color(0xFFA7C0C4);
+
+  static const Color backgroundColor = Color(0xFFF2F2F2);
 }

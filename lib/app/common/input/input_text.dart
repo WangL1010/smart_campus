@@ -148,8 +148,8 @@ class _InputTextState extends State<InputText> {
     return (widget.width != null && widget.width == 0)
         ? _inputText(context)
         : Container(
-            height: widget.height ?? 50,
-            width: widget.width ?? 300,
+            height: widget.height ?? 20,
+            width: widget.width ?? 130,
             alignment: Alignment.center,
             child: _inputText(context),
           );
@@ -168,7 +168,7 @@ class _InputTextState extends State<InputText> {
           style: widget.style ??
               TextStyle(
                 color: widget.textColor,
-                fontSize: widget.textSize ?? 28,
+                fontSize: widget.textSize ?? 20,
               ),
           enabled: widget.enabled,
           inputFormatters: widget.inputFormatters,
@@ -183,7 +183,7 @@ class _InputTextState extends State<InputText> {
                 hintText: widget.hintText,
                 hintStyle: TextStyle(
                   color: widget.hintColor,
-                  fontSize: widget.hintSize ?? 28,
+                  fontSize: widget.hintSize ?? 17,
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.all(0.0),

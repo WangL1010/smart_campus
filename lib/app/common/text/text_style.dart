@@ -13,12 +13,12 @@ class CommonTextStyle{
     fontSize: 24,
   );
 
-  static TextStyle blackFont24 = const TextStyle(
+  static TextStyle blackFont10 = const TextStyle(
     color: Colors.black,
     fontSize: 10,
   );
 
-  static TextStyle blackFont28 = const TextStyle(
+  static TextStyle blackFont12 = const TextStyle(
     color: Colors.black,
     fontSize: 12,
   );

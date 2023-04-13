@@ -20,4 +20,10 @@ class ImageCommon {
   static const String loop_image_3 = '${_root}loop_image_3.png';
   static const String loop_image_4 = '${_root}loop_image_4.png';
   static const String date = '${_root}date.png';
+  static const String down = '${_root}down.png';
+  static const String add = '${_root}add.png';
+  static const String good = '${_root}good.png';
+  static const String good_avtivy = '${_root}good_avtivy.png';
+
+
 }

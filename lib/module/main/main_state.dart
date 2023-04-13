@@ -32,7 +32,7 @@ class MainState {
         navigatorItem(
           icon: ImageCommon.message,
           activeIcon: ImageCommon.message_active,
-          label: '消息',
+          label: '交流',
           width: 30,
           height: 30,
         ),

@@ -68,7 +68,7 @@ class NewsDetailCard extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
               newsDetail?.itemTitle??'',
-              style: CommonTextStyle.blackFont28,
+              style: CommonTextStyle.blackFont12,
             ),
           ),
           Container(
@@ -83,7 +83,7 @@ class NewsDetailCard extends StatelessWidget {
                   SizedBox(width: 2,),
                   Text(
                     newsDetail?.newsTime??'',
-                    style: CommonTextStyle.blackFont24,
+                    style: CommonTextStyle.blackFont10,
                   )
                 ],
               )),

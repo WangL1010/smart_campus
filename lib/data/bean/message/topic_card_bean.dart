@@ -4,12 +4,12 @@
 
 import 'dart:convert';
 
-List<NewsDetailBean> newsDetailBeanFromJson(String str) => List<NewsDetailBean>.from(json.decode(str).map((x) => NewsDetailBean.fromJson(x)));
+List<TopicCardBean> newsDetailBeanFromJson(String str) => List<TopicCardBean>.from(json.decode(str).map((x) => TopicCardBean.fromJson(x)));
 
-String newsDetailBeanToJson(List<NewsDetailBean> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String newsDetailBeanToJson(List<TopicCardBean> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class NewsDetailBean {
-  NewsDetailBean({
+class TopicCardBean {
+  TopicCardBean({
     this.nickname,
     this.avatarUrl,
     this.title,
@@ -23,7 +23,7 @@ class NewsDetailBean {
   String? previewContent;
   int? likesCount;
 
-  factory NewsDetailBean.fromJson(Map<String, dynamic> json) => NewsDetailBean(
+  factory TopicCardBean.fromJson(Map<String, dynamic> json) => TopicCardBean(
     nickname: json["nickname"],
     avatarUrl: json["avatarUrl"],
     title: json["title"],

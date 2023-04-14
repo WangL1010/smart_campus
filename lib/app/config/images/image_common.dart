@@ -24,6 +24,7 @@ class ImageCommon {
   static const String add = '${_root}add.png';
   static const String good = '${_root}good.png';
   static const String good_avtivy = '${_root}good_avtivy.png';
-
-
+  static const String right = '${_root}right.png';
+  static const String publish = '${_root}publish.png';
+  static const String back = '${_root}back.png';
 }

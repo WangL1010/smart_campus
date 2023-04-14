@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
+import 'package:smart_campus/app/common/function/function.dart';
 import 'package:smart_campus/app/common/widget/common_image_widget.dart';
 import 'package:smart_campus/app/common/widget/image_overlay.dart';
 import 'package:smart_campus/app/config/colors/colors.dart';
@@ -42,7 +43,11 @@ class HomePage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildImageItem(title: '课表', image: ImageCommon.schedule),
+          _buildImageItem(
+            title: '课表',
+            image: ImageCommon.schedule,
+            onTap: () => logic.onSchedule(),
+          ),
           _buildImageItem(title: '通知', image: ImageCommon.notice),
           _buildImageItem(title: '社团活动', image: ImageCommon.activity),
           _buildImageItem(title: '比赛信息', image: ImageCommon.race),
@@ -51,9 +56,12 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildImageItem({required String title, required String image}) {
+  Widget _buildImageItem(
+      {required String title,
+      required String image,
+      ParamVoidCallback? onTap}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => onTap?.call(),
       child: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
@@ -112,7 +120,7 @@ class HomePage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-            color:  CommonTextColor.backgroundColor,
+            color: CommonTextColor.backgroundColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -215,7 +223,9 @@ class HomePage extends StatelessWidget {
     return Column(
       children: List.generate(
         newsList.length,
-        (index) => NewsDetailCard(newsDetail:newsList[index] ,),
+        (index) => NewsDetailCard(
+          newsDetail: newsList[index],
+        ),
       ),
     );
   }

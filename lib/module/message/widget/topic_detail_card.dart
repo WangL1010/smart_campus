@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smart_campus/app/common/widget/common_image_widget.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
+import 'package:smart_campus/data/bean/message/topic_card_bean.dart';
 
 class TopicDetailCard extends StatelessWidget {
-  TopicDetailCard({Key? key}) : super(key: key);
+  TopicDetailCard({Key? key, this.data}) : super(key: key);
 
+  final TopicCardBean? data;
 
   @override
   Widget build(BuildContext context) {

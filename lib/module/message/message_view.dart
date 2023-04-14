@@ -56,104 +56,106 @@ class MessagePage extends StatelessWidget {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Colors.black,
-                        ),
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      margin: EdgeInsets.all(5),
-                      child: Row(
-                        children: [
-                          Text(
-                            '学习',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                          CommonImage(
-                            ImageCommon.down,
-                            width: 10,
-                            height: 10,
-                          ),
-                        ],
+        body: Column(
+          children: [
+            Container(
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: Colors.black,
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Colors.black,
+                    padding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    margin: EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        Text(
+                          '学习',
+                          style: TextStyle(color: Colors.black, fontSize: 15),
                         ),
+                        CommonImage(
+                          ImageCommon.down,
+                          width: 10,
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: Colors.black,
                       ),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      margin: EdgeInsets.all(5),
-                      child: Row(
-                        children: [
-                          InputText(
-                            hintText: '请输入',
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              //todo
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.blue,
-                              ),
-                              padding: EdgeInsets.all(4),
-                              child: Text(
-                                '搜索',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 10),
-                              ),
+                    ),
+                    padding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    margin: EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        InputText(
+                          hintText: '请输入',
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            //todo
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.blue,
+                            ),
+                            padding: EdgeInsets.all(4),
+                            child: Text(
+                              '搜索',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 10),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    GestureDetector(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CommonImage(ImageCommon.add, width: 20, height: 20),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '发布话题',
-                            style: TextStyle(fontSize: 10),
-                          ),
-                        ],
-                      ),
+                  ),
+                  GestureDetector(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CommonImage(ImageCommon.add, width: 20, height: 20),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          '发布话题',
+                          style: TextStyle(fontSize: 10),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  color: CommonTextColor.backgroundColor,
+                  child: Column(
+                    children: [
+                      ...children,
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                color: CommonTextColor.backgroundColor,
-                child: Column(
-                  children: [
-                    ...children,
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

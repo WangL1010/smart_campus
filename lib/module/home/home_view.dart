@@ -48,7 +48,11 @@ class HomePage extends StatelessWidget {
             image: ImageCommon.schedule,
             onTap: () => logic.onSchedule(),
           ),
-          _buildImageItem(title: '通知', image: ImageCommon.notice),
+          _buildImageItem(
+            title: '通知',
+            image: ImageCommon.notice,
+            onTap: () => logic.onNotify(),
+          ),
           _buildImageItem(title: '社团活动', image: ImageCommon.activity),
           _buildImageItem(title: '比赛信息', image: ImageCommon.race),
         ],

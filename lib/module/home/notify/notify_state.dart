@@ -1,0 +1,4 @@
+class NotifyState {
+  NotifyState() {
+  }
+}

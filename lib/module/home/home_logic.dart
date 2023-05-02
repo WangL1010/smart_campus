@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:smart_campus/module/home/notify/notify_view.dart';
 import 'package:smart_campus/module/home/schedule/schedule_view.dart';
 
 import 'home_state.dart';
@@ -17,5 +18,9 @@ class HomeLogic extends GetxController {
     Get.to(
       SchedulePage(),
     );
+  }
+
+  void onNotify() {
+    Get.to(NotifyPage());
   }
 }

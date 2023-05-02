@@ -26,26 +26,26 @@ class CommonToast {
 
   // ignore: type_annotate_public_apis, always_declare_return_types
   static showToast(
-      text,
-      BuildContext context, {
-        toastDuration,
-        toastPosition,
-        backgroundColor = const Color(0xAA000000),
-        textStyle = const TextStyle(fontSize: 15, color: Colors.white),
-        toastBorderRadius = 20.0,
-        border,
-      }) {
+    text,
+    BuildContext context, {
+    toastDuration,
+    backgroundColor = const Color(0xAA000000),
+    textStyle = const TextStyle(fontSize: 15, color: Colors.white),
+    toastBorderRadius = 20.0,
+    border,
+    trailing,
+  }) {
     assert(text != null);
     ToastView.dismiss();
     ToastView.createView(
       text,
       context,
       toastDuration,
-      toastPosition,
       backgroundColor,
       textStyle,
       toastBorderRadius,
       border,
+      trailing,
     );
   }
 }
@@ -88,25 +88,25 @@ class ToastView {
           child: trailing == null
               ? Text(text, softWrap: true, style: textStyle)
               : Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(text, style: textStyle),
-              ),
-              const SizedBox(
-                width: 6,
-              ),
-              trailing
-            ],
-          ),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(text, style: textStyle),
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    trailing
+                  ],
+                ),
         ),
         Duration(seconds: toastDuration ?? 2),
         fadeDuration: 500);
 
     _overlayEntry = OverlayEntry(
         builder: (BuildContext context) => _showWidgetBasedOnPosition(
-          toastChild,
-        ));
+              toastChild,
+            ));
 
     _isVisible = true;
     overlayState!.insert(_overlayEntry!);
@@ -115,8 +115,8 @@ class ToastView {
   }
 
   static Positioned _showWidgetBasedOnPosition(
-      Widget child,
-      ) {
+    Widget child,
+  ) {
     return Positioned(top: 60, bottom: 60, left: 18, right: 18, child: child);
   }
 
@@ -188,12 +188,12 @@ class ToastStateFulState extends State<ToastCard>
 
   @override
   Widget build(BuildContext context) => FadeTransition(
-    opacity: _fadeAnimation as Animation<double>,
-    child: Center(
-      child: Material(
-        color: Colors.transparent,
-        child: widget.child,
-      ),
-    ),
-  );
+        opacity: _fadeAnimation as Animation<double>,
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: widget.child,
+          ),
+        ),
+      );
 }

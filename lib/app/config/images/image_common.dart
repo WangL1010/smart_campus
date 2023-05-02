@@ -27,4 +27,6 @@ class ImageCommon {
   static const String right = '${_root}right.png';
   static const String publish = '${_root}publish.png';
   static const String back = '${_root}back.png';
+  static const String filter = '${_root}filter.png';
+
 }

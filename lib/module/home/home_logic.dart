@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:smart_campus/module/home/club_activity/club_activity_view.dart';
+import 'package:smart_campus/module/home/game_info/game_info_view.dart';
 import 'package:smart_campus/module/home/notify/notify_view.dart';
 import 'package:smart_campus/module/home/schedule/schedule_view.dart';
 
@@ -22,5 +24,13 @@ class HomeLogic extends GetxController {
 
   void onNotify() {
     Get.to(NotifyPage());
+  }
+
+  void onClubActivity() {
+    Get.to(ClubActivityPage());
+  }
+
+  void onGameInfo() {
+    Get.to(GameInfoPage());
   }
 }

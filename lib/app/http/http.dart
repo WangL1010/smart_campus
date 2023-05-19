@@ -1,7 +1,10 @@
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:smart_campus/app/http/base_api.dart';
 import 'package:smart_campus/app/http/base_url.dart';
 
 import 'package:dio/dio.dart';
+import 'package:smart_campus/app/http/handle_exception.dart';
+import 'package:smart_campus/app/http/net_request_callback.dart';
 
 ///直接使用静态方法访问
 class Http {

@@ -45,6 +45,13 @@ dependencies:
   #自定义加载框、toast、弹框 https://pub.dev/packages/flutter_smart_dialog/versions
   flutter_smart_dialog: 4.5.3+7
 
+  # 网络请求
+  net_request_lib:
+    hosted:
+      name: net_request_lib
+      url: http://192.168.5.79:6688
+    version: 2.9.1-beta
+
   #轮播图
   flutter_swiper_view: ^1.1.8
   #界面适配 地址:https://github.com/OpenFlutter/flutter_screenutil

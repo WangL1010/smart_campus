@@ -1,5 +1,4 @@
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
-import 'package:net_request_lib/net_request_lib.dart';
 import 'package:smart_campus/app/http/base_url.dart';
 
 import 'package:dio/dio.dart';

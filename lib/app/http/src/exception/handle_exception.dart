@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
+import 'net_exception.dart';
+
 typedef CommonExceptionTip = Function(String message);
 
 /// 处理接口异常
@@ -18,7 +20,9 @@ class ExceptionHandler {
     }
     e = e is DioError ? e.error : e;
     String message;
-    if (e is JsonUnsupportedObjectError) {
+    if (e is NetException) {
+      message = e.message;
+    } else if (e is JsonUnsupportedObjectError) {
       message = "数据解析失败，请稍后重试!";
     } else if (e is SocketException) {
       message = "网络连接失败，请检查网络连接!";

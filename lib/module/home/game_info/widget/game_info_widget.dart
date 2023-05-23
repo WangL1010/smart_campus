@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:smart_campus/app/common/text/text_style.dart';
 import 'package:smart_campus/app/common/widget/common_divider_line.dart';
 
-class ActivityInfoWidget extends StatelessWidget {
-  const ActivityInfoWidget({Key? key}) : super(key: key);
+class GameInfoWidget extends StatelessWidget {
+  const GameInfoWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return _buildBg(children: [
       _buildTitle(),
       const CommonDividerLine(
+        height: 3,
         padding: EdgeInsets.symmetric(vertical: 2),
       ),
-      _buildItemContent(title: '活动地点', content: '甘怡'),
-      _buildItemContent(title: '活动时间', content: '甘怡'),
-      _buildItemContent(title: '活动内容', content: '甘怡'),
-      _buildItemContent(title: '活动人数', content: '甘怡'),
+      _buildItemContent(title: '比赛地点', content: '甘怡'),
+      _buildItemContent(title: '比赛时间', content: '甘怡'),
+      _buildItemContent(title: '比赛内容', content: '甘怡'),
+      _buildItemContent(title: '比赛人数', content: '甘怡'),
       _buildBtn(),
     ]);
   }
@@ -57,7 +58,7 @@ class ActivityInfoWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '社团名称',
+          '比赛名称',
           style: CommonTextStyle.blackFont12,
         ),
         Text(

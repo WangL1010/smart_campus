@@ -3,18 +3,17 @@
 //     final userBean = userBeanFromJson(jsonString);
 
 import 'dart:convert';
-import 'dart:ffi';
 
 UserBean userBeanFromJson(String str) => UserBean.fromJson(json.decode(str));
 
 String userBeanToJson(UserBean data) => json.encode(data.toJson());
 
 class UserBean {
-  Long? id;
+  int? id;
   String? name;
   String? userphone;
   String? password;
-  Long? schoolId;
+  int? schoolId;
   String? schoolName;
   String? studentId;
 

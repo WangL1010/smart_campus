@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
 import 'package:smart_campus/app/common/function/function.dart';
@@ -6,6 +7,7 @@ import 'package:smart_campus/app/common/input/input_text.dart';
 import 'package:smart_campus/app/common/text/text_style.dart';
 import 'package:smart_campus/app/common/widget/common_image_widget.dart';
 import 'package:smart_campus/app/common/widget/common_text_app_bar.dart';
+import 'package:smart_campus/module/home/club_activity/widget/activity_info_widget.dart';
 
 import '../../../app/config/images/image_common.dart';
 import 'club_activity_logic.dart';
@@ -20,6 +22,7 @@ class ClubActivityPage extends StatelessWidget {
       return _buildBg(children: [
         _buildInputSearch(),
         _buildFilterSearch(),
+        _buildActivityList(),
       ]);
     });
   }
@@ -149,6 +152,18 @@ class ClubActivityPage extends StatelessWidget {
             size: 20,
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildActivityList() {
+    return Expanded(
+      child: EasyRefresh(
+        enableControlFinishRefresh: true,
+        enableControlFinishLoad: true,
+        header: MaterialHeader(),
+        footer: MaterialFooter(),
+        child: const ActivityInfoWidget(),
       ),
     );
   }

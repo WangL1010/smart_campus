@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:smart_campus/app/http/src/exception/handle_exception.dart';
 import 'package:smart_campus/app/http/src/net_request_callback.dart';
+import 'package:smart_campus/data/bean/common/base_response.dart';
 
 /// 请求方法
 enum DioMethod {
@@ -13,13 +14,13 @@ enum DioMethod {
   head,
 }
 
-class DioUtil {
+class Http {
   /// 单例模式
-  static DioUtil? _instance;
+  static Http? _instance;
 
-  factory DioUtil() => _instance ?? DioUtil._internal();
+  factory Http() => _instance ?? Http._internal();
 
-  static DioUtil? get instance => _instance ?? DioUtil._internal();
+  static Http? get instance => _instance ?? Http._internal();
 
   /// 连接超时时间
   static const int connectTimeout = 60 * 1000;
@@ -31,7 +32,7 @@ class DioUtil {
   static Dio _dio = Dio();
 
   /// 初始化
-  DioUtil._internal() {
+  Http._internal() {
     // 初始化基本选项
     BaseOptions options = BaseOptions(
         baseUrl: 'http://124.221.75.237:8080/',
@@ -42,7 +43,8 @@ class DioUtil {
     _dio = Dio(options);
     // 添加拦截器
     _dio.interceptors
-        .add(InterceptorsWrapper(onResponse: _onResponse, onError: _onError));
+      ..add(InterceptorsWrapper(onResponse: _onResponse, onError: _onError))
+      ..add(buildResponseBusinessInterceptors());
     openLog();
   }
 
@@ -135,5 +137,15 @@ class DioUtil {
   void openLog() {
     _dio.interceptors
         .add(LogInterceptor(responseHeader: false, responseBody: true));
+  }
+
+  static InterceptorsWrapper buildResponseBusinessInterceptors() {
+    return InterceptorsWrapper(onResponse: (Response response, handler) {
+      // 处理业务数据的转换
+      final Map<String, dynamic> bodyMap = response.data;
+      final BaseResponse resp = BaseResponse.fromMap(bodyMap);
+      response.data = resp.result;
+      handler.next(response);
+    });
   }
 }

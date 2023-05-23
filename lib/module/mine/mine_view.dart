@@ -1,4 +1,3 @@
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
@@ -169,7 +168,7 @@ class MinePage extends StatelessWidget {
             width: 10,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () =>logic.onLogOut(),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(

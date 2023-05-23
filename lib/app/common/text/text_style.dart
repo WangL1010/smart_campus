@@ -10,4 +10,9 @@ class CommonTextStyle {
     color: Colors.black,
     fontSize: 12,
   );
+
+  static TextStyle whiteFont10 = const TextStyle(
+    color: Colors.white,
+    fontSize: 10,
+  );
 }

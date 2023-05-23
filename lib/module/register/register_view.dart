@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
+import 'package:smart_campus/app/common/text/text_style.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
 
 import 'register_logic.dart';
@@ -21,6 +22,7 @@ class RegisterPage extends StatelessWidget {
         _buildStudentNum(),
         _buildPassWord(),
         _buildRePassWord(),
+        _buildSelectSchool(),
         _buildRegisteredBtn(),
       ]);
     });
@@ -70,7 +72,7 @@ class RegisterPage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             child: const Text(
-              '账号:',
+              '手机号:',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18,
@@ -123,7 +125,7 @@ class RegisterPage extends StatelessWidget {
 
   Widget _buildRegisteredBtn() {
     return GestureDetector(
-      onTap: () => logic.onRegistred(),
+      onTap: () => logic.onRegister(),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         alignment: Alignment.center,
@@ -219,4 +221,46 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
+
+ Widget  _buildSelectSchool() {
+    return Container(
+      padding: const EdgeInsets.only(left: 5, top: 10,bottom: 10,right: 40),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            child: const Text(
+              '学校:',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+              ),
+            ),
+          ),
+          InkWell(
+            customBorder: StadiumBorder(),
+            onTap: () => logic.selectSchool(),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  state.curSchool?.name??'请选择',
+                  style: CommonTextStyle.blackFont12,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 25,
+                  color: Colors.grey,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+ }
 }

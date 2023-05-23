@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/utils/toast_util.dart';
 import 'package:smart_campus/app/http/dio_request.dart';
+import 'package:smart_campus/app/utils/text_utils.dart';
 import 'package:smart_campus/data/bean/user/user_bean.dart';
+import 'package:smart_campus/data/bean/user/user_info_manager.dart';
 import 'package:smart_campus/module/main/main_view.dart';
 import 'package:smart_campus/module/register/register_view.dart';
 
@@ -16,12 +18,17 @@ class LoginLogic extends GetxController {
   }
 
   Future<void> onLogin() async {
+    if (StringUtils.isEmpty(state.phoneNumController?.text) ||
+        StringUtils.isEmpty(state.passwordController?.text)) {
+      ToastUtil.showToast('请输入登录信息');
+      return;
+    }
     UserBean userBean = UserBean(
-      userphone: '16680804030',
-      password: '201908010433',
+      userphone: state.phoneNumController?.text ?? '',
+      password: state.passwordController?.text ?? '',
     );
-    DioUtil.instance?.openLog();
-    var result = await DioUtil().request(
+    Http.instance?.openLog();
+    var result = await Http().request(
       'users/login',
       data: userBean,
       method: DioMethod.post,
@@ -30,12 +37,13 @@ class LoginLogic extends GetxController {
     if (result == null) {
       return;
     }
+    UserBean data = UserBean.fromJson(result);
+    UserInfoManager.instance.updateUserInfo(data);
     ToastUtil.showToast('登陆成功');
     Get.to(MainPage());
   }
 
   void onSignUp() {
-    ToastUtil.showToast('请输入密码');
     //跳转到注册页面
     Get.to(RegisterPage());
   }

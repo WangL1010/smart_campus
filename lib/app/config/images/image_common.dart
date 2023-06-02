@@ -23,10 +23,13 @@ class ImageCommon {
   static const String down = '${_root}down.png';
   static const String add = '${_root}add.png';
   static const String good = '${_root}good.png';
-  static const String good_avtivy = '${_root}good_avtivy.png';
+  static const String good_activity = '${_root}good_activity.png';
   static const String right = '${_root}right.png';
   static const String publish = '${_root}publish.png';
   static const String back = '${_root}back.png';
   static const String filter = '${_root}filter.png';
-
+  static const String person = '${_root}person.png';
+  ///删除图片
+  static const delete_file = '${_root}delete_file.png';
+  static const add_photo = '${_root}add_photo.png';
 }

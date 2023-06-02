@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/app/common/bind_widget/get_bind_widget.dart';
@@ -107,6 +108,7 @@ class HomePage extends StatelessWidget {
     return GetBindWidget(
       bind: logic,
       child: Scaffold(
+        backgroundColor: CommonTextColor.backgroundColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           elevation: 0,
@@ -130,16 +132,11 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            color: CommonTextColor.backgroundColor,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                ...children,
-              ],
-            ),
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ...children,
+          ],
         ),
       ),
     );
@@ -172,8 +169,8 @@ class HomePage extends StatelessWidget {
                       alignment: Alignment.center,
                       child: CommonImage(
                         path[index],
-                        width: 350,
-                        height: 160,
+                        width: 300,
+                        height: 140,
                       ),
                     ),
                   ),
@@ -232,11 +229,23 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildNewsList() {
-    return Column(
-      children: List.generate(
-        newsList.length,
-        (index) => NewsDetailCard(
-          newsDetail: newsList[index],
+    return Expanded(
+      child: EasyRefresh(
+        firstRefresh: false,
+        enableControlFinishRefresh: true,
+        enableControlFinishLoad: true,
+        controller: state.refreshController,
+        header: MaterialHeader(),
+        footer: MaterialFooter(),
+        onLoad: () async => logic.onLoad(),
+        child: Column(
+          children: List.generate(
+            state.showNews.length,
+            (index) => NewsDetailCard(
+              onTap: (data)=>logic.toDetail(data),
+              newsDetail: state.showNews[index],
+            ),
+          ),
         ),
       ),
     );

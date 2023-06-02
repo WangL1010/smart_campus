@@ -1,41 +1,61 @@
 // To parse this JSON data, do
 //
-//     final newsDetailBean = newsDetailBeanFromJson(jsonString);
+//     final topicBean = topicBeanFromJson(jsonString);
 
 import 'dart:convert';
 
-List<TopicCardBean> newsDetailBeanFromJson(String str) => List<TopicCardBean>.from(json.decode(str).map((x) => TopicCardBean.fromJson(x)));
+List<TopicBean> newsDetailBeanFromJson(String str) => List<TopicBean>.from(json.decode(str).map((x) => TopicBean.fromJson(x)));
 
-String newsDetailBeanToJson(List<TopicCardBean> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String newsDetailBeanToJson(List<TopicBean> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class TopicCardBean {
-  TopicCardBean({
-    this.nickname,
-    this.avatarUrl,
+
+class TopicBean {
+  int? id;
+  String? userAvatar;
+  String? typeName;
+  String? userNickname;
+  String? title;
+  String? content;
+  List<String>? imageList;
+  int? likeCount;
+  int? type;
+  bool? isLike;
+  TopicBean({
+    this.id,
+    this.userAvatar,
+    this.userNickname,
     this.title,
-    this.previewContent,
-    this.likesCount,
+    this.content,
+    this.imageList,
+    this.likeCount,
+    this.type,
+    this.isLike=false,
+    this.typeName,
   });
 
-  String? nickname;
-  String? avatarUrl;
-  String? title;
-  String? previewContent;
-  int? likesCount;
-
-  factory TopicCardBean.fromJson(Map<String, dynamic> json) => TopicCardBean(
-    nickname: json["nickname"],
-    avatarUrl: json["avatarUrl"],
+  factory TopicBean.fromJson(Map<String, dynamic> json) => TopicBean(
+    id: json["id"],
+    userAvatar: json["user_avatar"],
+    userNickname: json["user_nickname"],
     title: json["title"],
-    previewContent: json["previewContent"],
-    likesCount: json["likesCount"],
+    content: json["content"],
+    imageList: json["image_list"] == null ? [] : List<String>.from(json["image_list"]!.map((x) => x)),
+    likeCount: json["like_count"],
+    type: json["type"],
+    isLike: json["isLike"],
+    typeName: json["typeName"],
   );
 
   Map<String, dynamic> toJson() => {
-    "nickname": nickname,
-    "avatarUrl": avatarUrl,
+    "id": id,
+    "user_avatar": userAvatar,
+    "user_nickname": userNickname,
     "title": title,
-    "previewContent": previewContent,
-    "likesCount": likesCount,
+    "content": content,
+    "image_list": imageList == null ? [] : List<dynamic>.from(imageList!.map((x) => x)),
+    "like_count": likeCount,
+    "type": type,
+    "isLike": isLike,
+    "typeName": typeName,
   };
 }

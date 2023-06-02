@@ -15,7 +15,7 @@ class TopicDetailCard extends StatelessWidget {
     return _buildBg(children: [
       _buildTitle(),
       _buildContent(),
-      _buildGood(),
+      //_buildGood(),
     ]);
   }
 

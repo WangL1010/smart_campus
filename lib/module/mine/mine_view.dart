@@ -47,7 +47,7 @@ class MinePage extends StatelessWidget {
 
   Widget _buildMineInfo() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () =>logic.toUserInfo(),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Row(
@@ -55,50 +55,41 @@ class MinePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CommonImage(
-              ImageCommon.loop_image_2,
+              ImageCommon.person,
               width: 60,
               height: 60,
             ),
-            GestureDetector(
-              onTap: () {
-                //todo
-              },
-              child: Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(left: 30),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black.withOpacity(0.5)),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                width: 230,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('昵称:  小王'),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('学号:  201908010433'),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          child: Text('学院:  计算机与通信工程'),
-                        ),
-                      ],
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                    ),
-                    CommonImage(
-                      ImageCommon.right,
-                      width: 20,
-                      height: 20,
-                    ),
-                  ],
-                ),
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(left: 30),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black.withOpacity(0.5)),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              width: 230,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 5),
+                        child: Text('昵称:  ${state.user.name}'),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 5),
+                        child: Text('学号:  ${state.user.studentId}'),
+                      ),
+                    ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                  ),
+                  CommonImage(
+                    ImageCommon.right,
+                    width: 20,
+                    height: 20,
+                  ),
+                ],
               ),
             ),
           ],
@@ -121,7 +112,7 @@ class MinePage extends StatelessWidget {
             width: 10,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () =>logic.toPublishTopic(),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -168,7 +159,7 @@ class MinePage extends StatelessWidget {
             width: 10,
           ),
           GestureDetector(
-            onTap: () =>logic.onLogOut(),
+            onTap: () => logic.onLogOut(),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(

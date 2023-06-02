@@ -35,6 +35,7 @@ class LoginLogic extends GetxController {
       isLoading: true,
     );
     if (result == null) {
+      ToastUtil.showToast('登陆失败，账号或密码错误');
       return;
     }
     UserBean data = UserBean.fromJson(result);

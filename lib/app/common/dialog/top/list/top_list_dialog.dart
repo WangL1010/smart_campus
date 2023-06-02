@@ -66,7 +66,7 @@ class _TopListDialogState extends State<TopListDialog>
         widget.onTap?.call(index);
       },
       child: Container(
-        height: 90,
+        height: 30,
         alignment: Alignment.center,
         child: Row(
           mainAxisSize: MainAxisSize.min,

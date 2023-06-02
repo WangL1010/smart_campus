@@ -15,7 +15,7 @@ class NewsDetailCard extends StatelessWidget {
   //数据源
   final NewsDetailBean? newsDetail;
 
-  final ParamVoidCallback? onTap;
+  final ParamSingleCallback<NewsDetailBean>? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class NewsDetailCard extends StatelessWidget {
 
   Widget _buildBg({required List<Widget> children}) {
     return GestureDetector(
-      onTap: () => onTap?.call(),
+      onTap: () => onTap?.call(newsDetail!),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -50,8 +50,8 @@ class NewsDetailCard extends StatelessWidget {
       alignment: Alignment.center,
       margin: const EdgeInsets.all(5),
       child: CommonImage(
-        newsDetail?.itemImageUrl??'',
-        width: 200,
+        newsDetail?.coverImageUrl??'',
+        width: 150,
         height: 100,
       ),
     );
@@ -67,7 +67,7 @@ class NewsDetailCard extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              newsDetail?.itemTitle??'',
+              newsDetail?.title??'',
               style: CommonTextStyle.blackFont12,
             ),
           ),
@@ -82,7 +82,7 @@ class NewsDetailCard extends StatelessWidget {
                   ),
                   SizedBox(width: 2,),
                   Text(
-                    newsDetail?.newsTime??'',
+                    newsDetail?.publishDate??'',
                     style: CommonTextStyle.blackFont10,
                   )
                 ],

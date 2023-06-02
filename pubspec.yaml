@@ -47,6 +47,9 @@ dependencies:
 
   dio: 4.0.3
 
+  # 九宫格图片选择器 https://pub.dev/packages/wechat_assets_picker/versions
+  wechat_assets_picker: 7.3.2
+
   #轮播图
   flutter_swiper_view: ^1.1.8
   #界面适配 地址:https://github.com/OpenFlutter/flutter_screenutil

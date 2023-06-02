@@ -4,38 +4,46 @@
 
 import 'dart:convert';
 
-List<NewsDetailBean> newsDetailBeanFromJson(String str) => List<NewsDetailBean>.from(json.decode(str).map((x) => NewsDetailBean.fromJson(x)));
+NewsDetailBean newsDetailBeanFromJson(String str) => NewsDetailBean.fromJson(json.decode(str));
 
-String newsDetailBeanToJson(List<NewsDetailBean> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String newsDetailBeanToJson(NewsDetailBean data) => json.encode(data.toJson());
 
 class NewsDetailBean {
+  int? id;
+  String? title;
+  String? content;
+  String? publishDate;
+  String? author;
+  String? college;
+  String? coverImageUrl;
+
   NewsDetailBean({
-    this.newsId,
-    this.itemImageUrl,
-    this.itemTitle,
-    this.newsTime,
+    this.id,
+    this.title,
     this.content,
+    this.publishDate,
+    this.author,
+    this.college,
+    this.coverImageUrl,
   });
 
-  int? newsId;
-  String? itemImageUrl;
-  String? itemTitle;
-  String? newsTime;
-  String? content;
-
   factory NewsDetailBean.fromJson(Map<String, dynamic> json) => NewsDetailBean(
-    newsId: json["newsID"],
-    itemImageUrl: json["itemImageUrl"],
-    itemTitle: json["itemTitle"],
-    newsTime: json["newsTime"],
+    id: json["id"],
+    title: json["title"],
     content: json["content"],
+    publishDate:  json["publishDate"],
+    author: json["author"],
+    college: json["college"],
+    coverImageUrl: json["cover_image_url"],
   );
 
   Map<String, dynamic> toJson() => {
-    "newsID": newsId,
-    "itemImageUrl": itemImageUrl,
-    "itemTitle": itemTitle,
-    "newsTime": newsTime,
+    "id": id,
+    "title": title,
     "content": content,
+    "publishDate": publishDate,
+    "author": author,
+    "college": college,
+    "cover_image_url": coverImageUrl,
   };
 }

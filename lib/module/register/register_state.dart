@@ -6,6 +6,7 @@ class RegisterState {
   TextEditingController? studentNumController;
   TextEditingController? passwordController;
   TextEditingController? rePasswordController;
+  TextEditingController? nameController;
   late List<FilterInfo> filterSchool;
   FilterInfo? curSchool;
 
@@ -14,6 +15,7 @@ class RegisterState {
       ..studentNumController = TextEditingController()
       ..passwordController = TextEditingController()
       ..phoneNumController = TextEditingController()
+      ..nameController = TextEditingController()
       ..rePasswordController = TextEditingController()
       ..filterSchool = [
         FilterInfo(name: '长沙理工大学', tag: '10536'),

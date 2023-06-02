@@ -19,6 +19,7 @@ class RegisterPage extends StatelessWidget {
         _buildTitle(),
         _buildLogo(),
         _buildPhoneNumber(),
+        _buildName(),
         _buildStudentNum(),
         _buildPassWord(),
         _buildRePassWord(),
@@ -263,4 +264,34 @@ class RegisterPage extends StatelessWidget {
       ),
     );
  }
+
+  Widget _buildName() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            child: const Text(
+              '姓名:',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+              ),
+            ),
+          ),
+          Expanded(
+            child: TextField(
+              keyboardType: TextInputType.number,
+              controller: state.nameController,
+              decoration: const InputDecoration(
+                hintText: '请输入姓名',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

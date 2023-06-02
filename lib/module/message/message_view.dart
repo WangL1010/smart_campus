@@ -6,6 +6,8 @@ import 'package:smart_campus/app/common/widget/common_image_widget.dart';
 import 'package:smart_campus/app/common/widget/image_overlay.dart';
 import 'package:smart_campus/app/config/colors/colors.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
+import 'package:smart_campus/data/bean/message/topic_card_bean.dart';
+import 'package:smart_campus/module/message/message_state.dart';
 import 'package:smart_campus/module/message/widget/topic_detail_card.dart';
 import 'message_logic.dart';
 
@@ -16,10 +18,16 @@ class MessagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MessageLogic>(builder: (logic) {
+      List<Widget> widgets = [];
+      for (TopicBean temp in state.showTopics) {
+        widgets.add(TopicDetailCard(
+          data: temp,
+          onTap: (info) => logic.toDetail(info),
+          onLike: (bean) => logic.onLike(bean),
+        ));
+      }
       return _buildBg(context, children: [
-        TopicDetailCard(),
-        TopicDetailCard(),
-        TopicDetailCard(),
+        ...widgets,
       ]);
     });
   }
@@ -58,7 +66,7 @@ class MessagePage extends StatelessWidget {
         body: Column(
           children: [
             GestureDetector(
-              onTap: ()=>logic.onSelectType(),
+              onTap: () => logic.onSelectType(),
               child: Container(
                 color: Colors.white,
                 child: Row(
@@ -72,12 +80,12 @@ class MessagePage extends StatelessWidget {
                         ),
                       ),
                       padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       margin: EdgeInsets.all(5),
                       child: Row(
                         children: [
                           Text(
-                            state.curType?.name??'类型',
+                            state.curType?.name ?? '类型',
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           CommonImage(
@@ -96,17 +104,16 @@ class MessagePage extends StatelessWidget {
                         ),
                       ),
                       padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       margin: EdgeInsets.all(5),
                       child: Row(
                         children: [
                           InputText(
+                            controller: state.searchController,
                             hintText: '请输入',
                           ),
                           GestureDetector(
-                            onTap: () {
-                              //todo
-                            },
+                            onTap: () =>logic.onSearch(),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
@@ -124,6 +131,7 @@ class MessagePage extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: ()=>logic.addMessage(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

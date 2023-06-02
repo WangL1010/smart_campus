@@ -38,7 +38,7 @@ class RegisterLogic extends GetxController {
       return;
     }
     UserBean userBean = UserBean(
-      name: '小明',
+      name: '游客',
       userphone: state.passwordController?.text,
       password: state.passwordController?.text,
       schoolId: int.tryParse(state.curSchool?.tag ?? ''),

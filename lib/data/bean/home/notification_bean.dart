@@ -4,9 +4,10 @@
 
 import 'dart:convert';
 
-NotificationBean notificationBeanFromJson(String str) => NotificationBean.fromJson(json.decode(str));
 
-String notificationBeanToJson(NotificationBean data) => json.encode(data.toJson());
+List<NotificationBean> notificationBeanFromJson(String str) => List<NotificationBean>.from(json.decode(str).map((x) => NotificationBean.fromJson(x)));
+
+String notificationBeanToJson(List<NotificationBean> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class NotificationBean {
   int? id;
@@ -14,7 +15,7 @@ class NotificationBean {
   String? title;
   String? unit;
   String? content;
-  DateTime? time;
+  String? time;
 
   NotificationBean({
     this.id,
@@ -31,7 +32,7 @@ class NotificationBean {
     title: json["title"],
     unit: json["unit"],
     content: json["content"],
-    time: json["time"] == null ? null : DateTime.parse(json["time"]),
+    time: json["time"] ,
   );
 
   Map<String, dynamic> toJson() => {
@@ -40,6 +41,6 @@ class NotificationBean {
     "title": title,
     "unit": unit,
     "content": content,
-    "time": time?.toIso8601String(),
+    "time": time,
   };
 }

@@ -32,4 +32,6 @@ class ImageCommon {
   ///删除图片
   static const delete_file = '${_root}delete_file.png';
   static const add_photo = '${_root}add_photo.png';
+  static const activity_icon = '${_root}activity_icon.png';
+  static const didian = '${_root}didian.png';
 }

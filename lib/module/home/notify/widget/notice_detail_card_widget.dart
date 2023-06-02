@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:smart_campus/app/common/function/function.dart';
 import 'package:smart_campus/app/common/widget/common_divider_line.dart';
+import 'package:smart_campus/data/bean/home/notification_bean.dart';
 
 class NoticeDetailCardWidget extends StatelessWidget {
-  const NoticeDetailCardWidget({Key? key}) : super(key: key);
+  const NoticeDetailCardWidget({Key? key, required this.data, required this.onTap})
+      : super(key: key);
+  final NotificationBean data;
+  final ParamSingleCallback<NotificationBean> onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +21,24 @@ class NoticeDetailCardWidget extends StatelessWidget {
   }
 
   Widget _buildBg({required List<Widget> children}) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 10,
-      ),
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        children: [
-          ...children,
-        ],
+    return GestureDetector(
+      onTap: ()=>onTap.call(data),
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 10,
+        ),
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          children: [
+            ...children,
+          ],
+        ),
       ),
     );
   }
@@ -43,18 +51,18 @@ class NoticeDetailCardWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.red,
+              color:(data.isRead??false)? Colors.red:Colors.grey,
               borderRadius: BorderRadius.circular(5),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(
-              '已读',
+              (data.isRead??false)?'已读':'未读',
               style: TextStyle(color: Colors.white, fontSize: 15),
             ),
           ),
           const Spacer(),
           Text(
-            '标题',
+            data.title??'',
             style: TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -85,7 +93,7 @@ class NoticeDetailCardWidget extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  '计算机与通信工程学院',
+                  data.unit??'',
                   style: TextStyle(color: Colors.black, fontSize: 15),
                 ),
               ],
@@ -112,7 +120,7 @@ class NoticeDetailCardWidget extends StatelessWidget {
                   height: 100,
                   decoration: BoxDecoration(border: Border.all()),
                   child: Text(
-                    '测试',
+                    data.content??'',
                     style: TextStyle(color: Colors.black, fontSize: 12),
                   ),
                 ),
@@ -122,9 +130,11 @@ class NoticeDetailCardWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(right: 20),
             child: Text(
-              '2023-10-20',
+              data.time??'',
               style: TextStyle(
-                  color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
             ),
           )
         ],

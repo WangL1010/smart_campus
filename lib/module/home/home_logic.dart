@@ -40,20 +40,28 @@ class HomeLogic extends GetxController {
 
   //跳转到课程表
   void onSchedule() {
+    SmartDialog.showLoading();
+    Timer(const Duration(seconds: 1), () => SmartDialog.dismiss());
     Get.to(
       SchedulePage(),
     );
   }
 
   void onNotify() {
+    SmartDialog.showLoading();
+    Timer(const Duration(seconds: 1), () => SmartDialog.dismiss());
     Get.to(NotifyPage());
   }
 
   void onClubActivity() {
+    SmartDialog.showLoading();
+    Timer(const Duration(seconds: 1), () => SmartDialog.dismiss());
     Get.to(ClubActivityPage());
   }
 
   void onGameInfo() {
+    SmartDialog.showLoading();
+    Timer(const Duration(seconds: 1), () => SmartDialog.dismiss());
     Get.to(GameInfoPage());
   }
 

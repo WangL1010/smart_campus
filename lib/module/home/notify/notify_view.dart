@@ -8,6 +8,7 @@ import 'package:smart_campus/app/common/widget/common_text_app_bar.dart';
 import 'package:smart_campus/app/config/images/image_common.dart';
 import 'package:smart_campus/module/home/notify/widget/notice_detail_card_widget.dart';
 
+import '../../../data/bean/home/notification_bean.dart';
 import 'notify_logic.dart';
 
 ///通知页面
@@ -57,7 +58,8 @@ class NotifyPage extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            child: const InputText(
+            child:  InputText(
+              controller: state.searchController,
               hintSize: 16,
               hintText: '请输入搜索条件',
             ),
@@ -66,9 +68,7 @@ class NotifyPage extends StatelessWidget {
             width: 10,
           ),
           GestureDetector(
-            onTap: () {
-              //todo
-            },
+            onTap: () =>logic.onSearch(),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -84,43 +84,26 @@ class NotifyPage extends StatelessWidget {
           const SizedBox(
             width: 40,
           ),
-          GestureDetector(
-            child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  CommonImage(
-                    ImageCommon.filter,
-                    width: 20,
-                    height: 20,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 5),
-                    child: const Text(
-                      '筛选',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
   }
 
   Widget _buildNoticeList() {
+    List<Widget> widgets = [];
+    for (NotificationBean data in state.showNotify) {
+      widgets.add(NoticeDetailCardWidget(
+        data: data,
+        onTap:(info) =>logic.toDetail(info),
+      ));
+    }
     return Expanded(
-      child: EasyRefresh(
-        enableControlFinishRefresh: true,
-        enableControlFinishLoad: true,
-        header: MaterialHeader(),
-        footer: MaterialFooter(),
-        child: const NoticeDetailCardWidget(),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            ...widgets,
+          ],
+        ),
       ),
     );
   }

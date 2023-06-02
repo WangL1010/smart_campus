@@ -71,6 +71,7 @@ class MessageLogic extends GetxController {
   void onSearch() {
     if (StringUtils.isEmpty(state.searchController.text )) {
       ToastUtil.showToast('请输入搜索内容');
+      return;
     }
     SmartDialog.showLoading();
     Timer(const Duration(seconds: 1), () => SmartDialog.dismiss());

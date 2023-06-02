@@ -10,6 +10,7 @@ import 'package:smart_campus/app/common/widget/common_text_app_bar.dart';
 import 'package:smart_campus/module/home/club_activity/widget/activity_info_widget.dart';
 
 import '../../../app/config/images/image_common.dart';
+import '../../../data/bean/home/club_activity_bean.dart';
 import 'club_activity_logic.dart';
 
 class ClubActivityPage extends StatelessWidget {
@@ -59,7 +60,8 @@ class ClubActivityPage extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            child: const InputText(
+            child: InputText(
+              controller: state.searchController,
               hintSize: 16,
               hintText: '请输入搜索条件',
             ),
@@ -68,9 +70,7 @@ class ClubActivityPage extends StatelessWidget {
             width: 10,
           ),
           GestureDetector(
-            onTap: () {
-              //todo
-            },
+            onTap: () => logic.onSeach(),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -124,11 +124,13 @@ class ClubActivityPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Spacer(),
-          _buildFilterItem(title: '社团', onTap: () {}),
+          _buildFilterItem(
+              title: state.curType?.name ?? '社团',
+              onTap: () => logic.onSelectType()),
           Spacer(),
-          _buildFilterItem(title: '时间', onTap: () {}),
-          Spacer(),
-          _buildFilterItem(title: '是否参加', onTap: () {}),
+          _buildFilterItem(
+              title: state.curJoin?.name ?? '是否参加',
+              onTap: () => logic.onSelectJoin()),
           Spacer(),
         ],
       ),
@@ -139,31 +141,41 @@ class ClubActivityPage extends StatelessWidget {
     required String title,
     required ParamVoidCallback onTap,
   }) {
-    return Container(
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: CommonTextStyle.blackFont12,
-          ),
-          const Icon(
-            Icons.arrow_drop_down_sharp,
-            color: Colors.black,
-            size: 20,
-          ),
-        ],
+    return GestureDetector(
+      onTap: () => onTap.call(),
+      child: Container(
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: CommonTextStyle.blackFont12,
+            ),
+            const Icon(
+              Icons.arrow_drop_down_sharp,
+              color: Colors.black,
+              size: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildActivityList() {
+    List<Widget> widgets = [];
+    for (ClubActivityBean data in state.shows) {
+      widgets.add(ActivityInfoWidget(
+        data: data,
+        onTap: (info) => logic.toDetail(info),
+      ));
+    }
     return Expanded(
-      child: EasyRefresh(
-        enableControlFinishRefresh: true,
-        enableControlFinishLoad: true,
-        header: MaterialHeader(),
-        footer: MaterialFooter(),
-        child: const ActivityInfoWidget(),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            ...widgets,
+          ],
+        ),
       ),
     );
   }

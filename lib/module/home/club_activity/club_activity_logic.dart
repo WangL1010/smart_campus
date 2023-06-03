@@ -4,6 +4,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:smart_campus/data/bean/home/club_activity_bean.dart';
 import 'package:smart_campus/module/home/club_activity/activity_detail/activity_detail_view.dart';
+import 'package:smart_campus/module/home/club_activity/add_activity/add_activity_view.dart';
 
 import '../../../app/common/dialog/top/top_dialog.dart';
 import '../../../app/common/utils/toast_util.dart';
@@ -100,6 +101,13 @@ class ClubActivityLogic extends GetxController {
     Get.to(ActivityDetailPage(),arguments: {
       ActivityDetailState.keyData:info,
     });
+  }
+
+  Future<void> addActivity() async {
+   var result=await Get.to(AddActivityPage());
+   testCases.add(result);
+   state.shows=clubActivityBeanFromJson(clubActivityBeanToJson(testCases));
+   update();
   }
 
 }

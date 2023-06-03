@@ -87,6 +87,7 @@ class ClubActivityPage extends StatelessWidget {
             width: 40,
           ),
           GestureDetector(
+            onTap: ()=>logic.addActivity(),
             child: Container(
               alignment: Alignment.center,
               child: Column(

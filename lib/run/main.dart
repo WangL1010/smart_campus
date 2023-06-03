@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:smart_campus/module/splash/splash_view.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+import 'package:smart_campus/module/home/game_info/game_detail/game_detail_view.dart';
 
 import '../../../app/common/dialog/top/top_dialog.dart';
 import '../../../data/bean/common/filter_info.dart';
 import '../../../data/bean/home/competition_bean.dart';
+import '../club_activity/activity_detail/activity_detail_state.dart';
 import 'game_info_state.dart';
 
 class GameInfoLogic extends GetxController {
@@ -16,6 +18,7 @@ class GameInfoLogic extends GetxController {
     // TODO: implement onReady
     super.onReady();
     state.shows=competitionBeanFromJson(competitionBeanToJson(competitionList));
+    update();
   }
 
   void onSelectType() {
@@ -74,5 +77,14 @@ class GameInfoLogic extends GetxController {
     }
     update();
   }
+
+  void toDetail(CompetitionBean info) {
+    SmartDialog.showLoading();
+    Timer(const Duration(seconds: 1), () => SmartDialog.dismiss());
+    Get.to(GameDetailPage(),arguments: {
+      ActivityDetailState.keyData:info,
+    });
+  }
+
 
 }

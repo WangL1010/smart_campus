@@ -12,11 +12,11 @@ class GameInfoState {
     shows = [];
     filterType = [
       FilterInfo(name: '全部', tag: '0'),
-      FilterInfo(name: '外国语学院', tag: '1'),
-      FilterInfo(name: '物理科学与技术学院', tag: '2'),
-      FilterInfo(name: '数学与统计学院', tag: '3'),
-      FilterInfo(name: '化学与材料科学学院', tag: '4'),
-      FilterInfo(name: '计算机科学与技术学院', tag: '5'),
+      FilterInfo(name: '外国语', tag: '1'),
+      FilterInfo(name: '物理科学与技术', tag: '2'),
+      FilterInfo(name: '数学与统计', tag: '3'),
+      FilterInfo(name: '化学与材料科学', tag: '4'),
+      FilterInfo(name: '计算机科学与技术', tag: '5'),
     ];
     filterJoin = [
       FilterInfo(name: '全部', tag: '0'),

@@ -34,4 +34,5 @@ class ImageCommon {
   static const add_photo = '${_root}add_photo.png';
   static const activity_icon = '${_root}activity_icon.png';
   static const didian = '${_root}didian.png';
+  static const time = '${_root}time.png';
 }

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:smart_campus/app/common/function/function.dart';
 import 'package:smart_campus/app/common/text/text_style.dart';
 import 'package:smart_campus/app/common/widget/common_divider_line.dart';
 
-class GameInfoWidget extends StatelessWidget {
-  const GameInfoWidget({Key? key}) : super(key: key);
+import '../../../../data/bean/home/competition_bean.dart';
 
+class GameInfoWidget extends StatelessWidget {
+  const GameInfoWidget({Key? key, required this.data, required this.onTap}) : super(key: key);
+final CompetitionBean data;
+final ParamSingleCallback<CompetitionBean> onTap;
   @override
   Widget build(BuildContext context) {
     return _buildBg(children: [
@@ -13,10 +17,9 @@ class GameInfoWidget extends StatelessWidget {
         height: 3,
         padding: EdgeInsets.symmetric(vertical: 2),
       ),
-      _buildItemContent(title: '比赛地点', content: '甘怡'),
-      _buildItemContent(title: '比赛时间', content: '甘怡'),
-      _buildItemContent(title: '比赛内容', content: '甘怡'),
-      _buildItemContent(title: '比赛人数', content: '甘怡'),
+      _buildItemContent(title: '比赛地点', content: data.location??''),
+      _buildItemContent(title: '比赛时间', content: data.eventTime??''),
+      _buildItemContent(title: '比赛内容', content: data.eventContent??''),
       _buildBtn(),
     ]);
   }
@@ -62,7 +65,7 @@ class GameInfoWidget extends StatelessWidget {
           style: CommonTextStyle.blackFont12,
         ),
         Text(
-          '2023-05-06',
+          data.competitionName??'',
           style: CommonTextStyle.blackFont10,
         ),
       ],
@@ -70,23 +73,26 @@ class GameInfoWidget extends StatelessWidget {
   }
 
   Widget _buildBtn() {
-    return Container(
-      padding: EdgeInsets.only(top: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(5),
+    return GestureDetector(
+      onTap: ()=>onTap.call(data),
+      child: Container(
+        padding: EdgeInsets.only(top: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Text(
+                '详情',
+                style: CommonTextStyle.whiteFont10,
+              ),
             ),
-            child: Text(
-              '详情',
-              style: CommonTextStyle.whiteFont10,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
